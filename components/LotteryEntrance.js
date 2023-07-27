@@ -14,8 +14,8 @@ const LotteryEntrance = () => {
         abi: abi,
         contractAddress: raffleAddress,
         functionName: "enterRaffle",
+        msgValue: entranceFee,
         params: {},
-        msValue: entranceFee,
     })
 
     const { runContractFunction: getEntranceFee } = useWeb3Contract({
@@ -25,13 +25,15 @@ const LotteryEntrance = () => {
         params: {},
     })
 
+    async function updateUI() {
+        const entranceFeeFromCall = (await getEntranceFee()).toString()
+        setEntranceFee(entranceFeeFromCall)
+    }
+
     useEffect(() => {
         if (isWeb3Enabled) {
             //try to read the raffle entrance fee
-            async function updateUI() {
-                const entranceFeeFromCall = (await getEntranceFee()).toString()
-                setEntranceFee(entranceFeeFromCall)
-            }
+
             updateUI()
         }
     }, [isWeb3Enabled])
