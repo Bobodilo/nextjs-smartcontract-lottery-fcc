@@ -1,0 +1,11 @@
+{
+    "build": {
+      "image": "node:18-alpine",
+      "command": "yarn && yarn run build && yarn next export ",
+      "publicDir": "build",
+      "baseDir": "frontend",
+      "environment": {
+        "SOME_ENV": "Build finished!"
+      }
+    }
+   }
