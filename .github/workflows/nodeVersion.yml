@@ -1,0 +1,16 @@
+name: Node-Version
+
+on: push
+
+jobs: 
+  node-version:
+    name: Update node
+    runs-on: macos-latest
+    steps:
+    -name: checkout Node version
+      uses: actions/checkout@v3
+    
+    -name: Set up node version
+      uses: actions/setup-node@v3
+    with:
+      node-version: 18
